@@ -31,25 +31,12 @@ public class CredentialController {
     public ResponseEntity<Credential> addNewCredential(@RequestBody Credential c) throws ServerException{
         System.out.println("\n*** CredentialController called | method : addNewCredential ***");
 
-//        Credential c = new Credential();
-//        System.out.println("json.get userId:  " + json.get("userId"));
-//        System.out.println("json.get userId TYPE:  " + json.get("userId").getClass().getSimpleName());
-//
-//        Integer userId = Integer.parseInt(json.get("userId")) ;
-//        System.out.println("\nuserId TYPE:  " + userId.getClass().getSimpleName());
-//
-////        c.setUserId(userId);
-//        c.setUsername(json.get("username"));
-//        c.setPassword(json.get("password"));
-//        System.out.println("\nPrinting c:  " + c);
-
         Credential addCredential = credentialService.addNewCredential(c);
         if (addCredential == null){
             throw new ServerException("There was an error adding this new user's credentials.");
         } else {
             return new ResponseEntity<>(addCredential, HttpStatus.CREATED);
         }
-//        return new ResponseEntity<>(credentialService.addNewCredential(c), HttpStatus.CREATED);
 
     }
 }
