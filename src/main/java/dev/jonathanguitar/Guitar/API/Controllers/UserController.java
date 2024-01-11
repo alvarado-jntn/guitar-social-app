@@ -20,14 +20,14 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
-        System.out.println("*** UserController called | method : getAllUsers ***");
+        System.out.println("\n*** UserController called | method : getAllUsers ***");
 
         return new ResponseEntity<List<User>>(userService.allUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/{firstName}")
     public ResponseEntity<Optional<User>> getUserByFirstName(@PathVariable String firstName) {
-        System.out.println("*** UserController called | method : getUserByFirstName ***");
+        System.out.println("\n*** UserController called | method : getUserByFirstName ***");
 
         return new ResponseEntity<Optional<User>>(userService.findByFirstName(firstName), HttpStatus.OK);
     }

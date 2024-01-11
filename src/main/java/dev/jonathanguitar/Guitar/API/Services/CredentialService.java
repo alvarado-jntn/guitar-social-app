@@ -12,7 +12,11 @@ public class CredentialService {
     @Autowired
     private CredentialRepository credentialRepository;
 
-    public Credential findCredential(String username, String password) {
-        return credentialRepository.findCredential(username, password);
+    public Credential findByUsername(String username) {
+        return credentialRepository.findByUsername(username);
+    }
+
+    public Credential addNewCredential (Credential credential) {
+        return credentialRepository.save(credential);
     }
 }
