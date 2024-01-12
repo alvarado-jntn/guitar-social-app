@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserDetails {
     @Id
     private Integer userId;
-    private String date;
+    private String dob;
     private String description;
     private Integer guitarCount;
     private String level;

@@ -51,7 +51,7 @@ public class CredentialController {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
-    @PutMapping("updateUsername/{id}")
+    @PutMapping("/updateUsername/{id}")
     public ResponseEntity<Credential> updateUsername(@RequestBody Credential json, @PathVariable("id") Integer id) {
         System.out.println("\n*** CredentialController called | method : updateUsername ***");
 
