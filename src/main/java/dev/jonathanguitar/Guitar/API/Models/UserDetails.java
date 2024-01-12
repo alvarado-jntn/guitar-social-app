@@ -6,15 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "credentials")
-@Data // Automatically generates getters and setters
+@Table (name = "user_details")
+@Data //Automatically Creates Getters and Setters
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Credential {
-    // Instance Variable
+public class UserDetails {
     @Id
     private Integer userId;
-    private String username;
-    private String password;
+    private String date;
+    private String description;
+    private Integer guitarCount;
+    private String level;
 }

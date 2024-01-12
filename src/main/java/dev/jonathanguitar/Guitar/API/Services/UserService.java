@@ -34,12 +34,12 @@ public class UserService {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
-    public User updateUser(Integer id, User userUpdate) {
-        User u = userRepository.getReferenceById(id);
-        u.setFirstName(userUpdate.getFirstName());
-        u.setLastName(userUpdate.getLastName());
-        u.setEmail(userUpdate.getEmail());
-        return userRepository.save(u);
+    public User updateUser(Integer id, User user) {
+        User updateUser = userRepository.getReferenceById(id);
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        return userRepository.save(updateUser);
     }
     // DELETE ------------------------------------------------------------------------------------------------
     public void deleteUser(Integer id){
