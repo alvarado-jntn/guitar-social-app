@@ -27,7 +27,7 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
-    public Optional<Post> findByUserId(Integer userId) {
+    public Optional<List<Post>> findByUserId(Integer userId) {
         return postRepository.findByUserId(userId);
     }
     // UPDATE ------------------------------------------------------------------------------------------------

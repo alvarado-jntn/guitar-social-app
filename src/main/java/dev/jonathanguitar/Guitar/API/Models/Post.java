@@ -1,8 +1,6 @@
 package dev.jonathanguitar.Guitar.API.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class Post {
     // Instance Variables
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer postId;
     private String title;
     private String postDate;

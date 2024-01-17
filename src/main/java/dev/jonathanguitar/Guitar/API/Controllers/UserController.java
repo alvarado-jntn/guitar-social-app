@@ -69,8 +69,8 @@ public class UserController {
         } else {
             userService.deleteUser(id);
             System.out.println("User with this ID has been DELETED: " + id);
+            return new ResponseEntity<>("User with this ID has been DELETED: " + id, HttpStatus.OK);
         }
-        return new ResponseEntity<>("User with this ID has been DELETED: " + id, HttpStatus.OK);
 
     }
 
