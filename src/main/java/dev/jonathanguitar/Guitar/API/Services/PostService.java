@@ -30,6 +30,7 @@ public class PostService {
     public Optional<List<Post>> findByUserId(Integer userId) {
         return postRepository.findByUserId(userId);
     }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     public Post updatePost(Integer postId, Post post) {
         Post updatePost = postRepository.getReferenceById(postId);
@@ -42,26 +43,28 @@ public class PostService {
         return postRepository.save(updatePost);
     }
 
-    public Post addLike (Integer postId){
+    public Post addLike(Integer postId) {
         Post updatePost = postRepository.getReferenceById(postId);
 
         Integer likeCount = updatePost.getLikesCount();
-        likeCount ++;
+        likeCount++;
         updatePost.setLikesCount(likeCount);
 
         return postRepository.save(updatePost);
     }
-    public Post removeLike (Integer postId){
+
+    public Post removeLike(Integer postId) {
         Post updatePost = postRepository.getReferenceById(postId);
 
         Integer likeCount = updatePost.getLikesCount();
-        likeCount --;
+        likeCount--;
         updatePost.setLikesCount(likeCount);
 
         return postRepository.save(updatePost);
     }
+
     // DELETE ------------------------------------------------------------------------------------------------
-    public void deletePost (Integer postId){
+    public void deletePost(Integer postId) {
         postRepository.deleteById(postId);
     }
 
