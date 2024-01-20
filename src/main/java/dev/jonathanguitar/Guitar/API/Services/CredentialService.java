@@ -26,6 +26,11 @@ public class CredentialService {
         return credentialRepository.findById(id);
     }
 
+    public String giveUsername(Integer userId) {
+        Credential credential = credentialRepository.getReferenceById(userId);
+        return credential.getUsername();
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     public Credential updateUsername(Integer id, String newUsername) {
         Credential credential = credentialRepository.getReferenceById(id);
