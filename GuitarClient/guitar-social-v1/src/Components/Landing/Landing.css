@@ -1,0 +1,23 @@
+body{
+    background-color: #71797E;
+}
+.background-div{
+    color: white; 
+    border-style: solid; 
+    border-width: 2px;
+    border-color: red;
+    padding: 1%;
+    margin: 1%;
+}
+
+.test-div{
+    color: white; 
+    background-color: lightblue;
+    border-style: solid; 
+    border-width: 2px;
+    border-color: blue;
+}
+
+#register{
+    text-align: center;
+}
