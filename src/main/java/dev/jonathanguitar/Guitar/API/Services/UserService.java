@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,39 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public List<String> getAllEmails(){
+        List<User> usersList = userRepository.findAll();
+        List<String> emailList = new ArrayList<>();
+
+        for(User user:usersList){
+            emailList.add(user.getEmail());
+        }
+
+        return emailList;
+    }
+
+
+
     // UPDATE ------------------------------------------------------------------------------------------------
+    public boolean checkEmail(String newEmail){
+        boolean unique = true;
+
+        List<String> allEmails = getAllEmails();
+
+        for(String email:allEmails){
+            if(email.equals(newEmail)){
+                unique = false;
+                break;
+            }
+        }
+        if(unique){
+            System.out.println("email is unique: " + newEmail);
+        } else{
+            System.out.println("email is NOT unique: " + newEmail);
+        }
+
+        return unique;
+    }
     public User updateUser(Integer id, User user) {
         User updateUser = userRepository.getReferenceById(id);
         updateUser.setFirstName(user.getFirstName());

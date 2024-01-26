@@ -23,7 +23,7 @@ public class UserController {
     // CREATE ------------------------------------------------------------------------------------------------
     @PostMapping("/addNewUser")
     public ResponseEntity<User> addNewUser(@RequestBody User user) throws ServerException {
-        System.out.println("\n*** UserController called | method : addNewUser ***");
+        System.out.println("\n*** UserController | addNewUser method ***");
 
         User addUser = userService.addNewUser(user);
         if (addUser == null) {
@@ -36,22 +36,36 @@ public class UserController {
     // READ ------------------------------------------------------------------------------------------------
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
-        System.out.println("\n*** UserController called | method : getAllUsers ***");
+        System.out.println("\n*** UserController | getAllUsers method ***");
 
         return new ResponseEntity<List<User>>(userService.allUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/{firstName}")
     public ResponseEntity<Optional<User>> getUserByFirstName(@PathVariable("firstName") String firstName) {
-        System.out.println("\n*** UserController called | method : getUserByFirstName ***");
+        System.out.println("\n*** UserController | getUserByFirstName method ***");
 
         return new ResponseEntity<Optional<User>>(userService.findByFirstName(firstName), HttpStatus.OK);
     }
 
+    @GetMapping("/allEmails")
+    public ResponseEntity<List<String>> getAllEmails(){
+        System.out.println("\n*** UserController | getUserByFirstName method ***");
+
+        return  new ResponseEntity<>(userService.getAllEmails(), HttpStatus.OK);
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
+    @PostMapping("/checkEmail")
+    public ResponseEntity<Boolean> checkEmail (@RequestBody User json){
+        System.out.println("\n*** UserController | checkEmail method ***");
+
+        return new ResponseEntity<>(userService.checkEmail(json.getEmail()),HttpStatus.OK);
+    }
+
     @PutMapping("/updateUser/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable("id") Integer id) {
-        System.out.println("\n*** UserController called | method : updateUser ***");
+        System.out.println("\n*** UserController | updateUser method ***");
 
         User u = userService.updateUser(id, user);
         return new ResponseEntity<>(u, HttpStatus.OK);
@@ -60,7 +74,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id) {
-        System.out.println("\n*** UserController called | method : deleteUser ***");
+        System.out.println("\n*** UserController | deleteUser method ***");
 
         Optional<User> user = userService.findById(id);
 
