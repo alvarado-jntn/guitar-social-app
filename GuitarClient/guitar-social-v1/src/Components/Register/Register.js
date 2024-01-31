@@ -143,9 +143,8 @@ function Register() {
 
 
             addUser(output.firstName, output.lastName, output.email);
-            localStorage.clear();
             alert(`Thank you for registering.`);
-            navigate("/");
+            navigate("/login");
 
         } else { // If the form does not pass all validations.
             console.log(`--- Form FAILED a Validation ---`);

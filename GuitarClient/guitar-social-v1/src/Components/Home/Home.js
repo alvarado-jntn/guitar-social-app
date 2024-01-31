@@ -1,7 +1,7 @@
 import React from 'react';
-import './Landing.css';
+import './Home.css';
 
-function Landing() {
+function Home() {
 
     const siteName = "Sound Lounge";
 
@@ -20,11 +20,14 @@ function Landing() {
                 <h5>
                     "Music is Magic. Music is Life." - Jimi Hendrix
                 </h5>
+                <br/>
 
             </div>
             <div className="test-div" id="register">
-                <p>Already have an account? Login Here</p>
-                <p>Need an account? Register Here</p>
+                {localStorage.getItem("loggedIn")? <></>:<p>Already have an account? <a style={{color:"lime"}} href="/login">Login Here</a> </p>}
+                {localStorage.getItem("loggedIn")? <></>:<p>Need an account? <a style={{color:"lime"}} href="/register">Register Here</a></p>}
+                
+                
 
             </div>
 
@@ -32,4 +35,4 @@ function Landing() {
     )
 }
 
-export default Landing;
+export default Home;

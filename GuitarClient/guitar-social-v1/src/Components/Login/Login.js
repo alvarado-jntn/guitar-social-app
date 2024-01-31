@@ -8,7 +8,7 @@ function Login() {
         username: "",
         password: ""
     });
-    const [outputs, setOutputs] = useState({});
+    
     const [usernameCheck, setUsernameCheck] = useState(true);
     const [passCheck, setPassCheck] = useState(true);
     const [loginSuccess, setLoginSuccess] = useState(true);
@@ -48,7 +48,6 @@ function Login() {
                 setUsernameCheck(false);
             } else {
                 setUsernameCheck(true);
-                setOutputs(values => ({ ...values, [name]: value }));
             }
         };
         if (name === "password") {
@@ -56,7 +55,6 @@ function Login() {
                 setPassCheck(false);
             } else {
                 setPassCheck(true);
-                setOutputs(values => ({ ...values, [name]: value }));
             }
         };
 
@@ -66,7 +64,7 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        login(outputs.username, outputs.password);
+        login(inputs.username, inputs.password);
 
 
     };

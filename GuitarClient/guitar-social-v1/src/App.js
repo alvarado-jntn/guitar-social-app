@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header/Header';
 import NotFound from './Components/NotFound/NotFound';
-import Landing from './Components/Landing/Landing';
+import Home from './Components/Home/Home';
 import Layout from './Components/Layout/Layout';
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />

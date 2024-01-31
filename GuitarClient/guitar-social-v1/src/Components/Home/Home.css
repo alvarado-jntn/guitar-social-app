@@ -13,9 +13,10 @@ body{
 .test-div{
     color: white; 
     /* background-color: lightblue; */
-    border-style: solid; 
-    border-width: 2px;
-    border-color: blue;
+    /* border-style: solid; 
+    border-width: 2px; */
+    /* border-color: blue; */
+    text-align: center;
 }
 
 #register{
