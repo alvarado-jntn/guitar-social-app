@@ -13,7 +13,6 @@ function Register() {
     const [username, setUsername] = useState(true);
     const [apiUsernameBool, setApiUsernameBool] = useState(true);
     const [password, setPassword] = useState(true);
-    const [userId, setUserId] = useState(0);
     const [output, setOutput] = useState({});
     const navigate = useNavigate();
 
@@ -67,6 +66,7 @@ function Register() {
                 username: newUsername,
                 password: newPassword
             });
+            console.log(response.data.username);
 
         } catch (error) {
             console.log(error);
