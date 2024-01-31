@@ -5,7 +5,13 @@ import api from '../../API/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        username: "",
+        password: ""
+    });
     const [firstName, setFirstName] = useState(true);
     const [lastName, setLastName] = useState(true);
     const [email, setEmail] = useState(true);
@@ -132,7 +138,7 @@ function Register() {
         const usernameCheck = usernameValidation(output.username);
         const passwordCheck = passwordValidation(output.password);
 
-        if (firstNameCheck & lastNameCheck & emailCheck & usernameCheck & passwordCheck & apiEmailBool & apiUsernameBool) { // If the form passes all validations
+        if (firstNameCheck && lastNameCheck && emailCheck && usernameCheck && passwordCheck && apiEmailBool && apiUsernameBool) { // If the form passes all validations
             console.log(`--- Form PASSED All Validations ---`);
 
 
@@ -151,7 +157,7 @@ function Register() {
 
     return (
         <div className="background-div">
-            <h1>Sound Stage Guitar Registration</h1>
+            <h1>Sound Lounge Registration</h1>
             <div>
                 <form onSubmit={handleSubmit} className="register-form">
                     <label>
