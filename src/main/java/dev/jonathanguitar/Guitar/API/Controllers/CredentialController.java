@@ -51,6 +51,14 @@ public class CredentialController {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
+    @PostMapping("/checkUsername")
+    public ResponseEntity<Boolean> checkUsername(@RequestBody Credential json){
+        System.out.println("\n*** CredentialController | findCredential method ***");
+
+        return new ResponseEntity<>(credentialService.checkUsername(json.getUsername()),HttpStatus.OK);
+
+    }
+
     @PutMapping("/updateUsername/{id}")
     public ResponseEntity<Credential> updateUsername(@RequestBody Credential json, @PathVariable("id") Integer id) {
         System.out.println("\n*** CredentialController called | method : updateUsername ***");
