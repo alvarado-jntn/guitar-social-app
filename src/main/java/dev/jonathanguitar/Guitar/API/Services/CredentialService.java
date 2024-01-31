@@ -20,6 +20,20 @@ public class CredentialService {
     }
 
     // READ   ------------------------------------------------------------------------------------------------
+    public Integer loginToGetUserId(String username, String password){
+        Integer userId = 0;
+
+        List<Credential> credentialList = credentialRepository.findAll();
+
+        for(Credential credential: credentialList){
+            if(credential.getUsername().equals(username) && credential.getPassword().equals(password)){
+                userId=credential.getUserId();
+            }
+        }
+        System.out.println("----userId:" + userId);
+
+        return userId;
+    }
     public Credential findByUsername(String username) {
         return credentialRepository.findByUsername(username);
     }

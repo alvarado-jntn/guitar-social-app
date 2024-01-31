@@ -1,7 +1,9 @@
 package dev.jonathanguitar.Guitar.API.Controllers;
 
 import dev.jonathanguitar.Guitar.API.Models.Credential;
+import dev.jonathanguitar.Guitar.API.Models.User;
 import dev.jonathanguitar.Guitar.API.Services.CredentialService;
+import dev.jonathanguitar.Guitar.API.Services.UserService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ import java.util.Optional;
 public class CredentialController {
     @Autowired
     private CredentialService credentialService;
+    @Autowired
+    private UserService userService;
 
     // CREATE ------------------------------------------------------------------------------------------------
     @PostMapping("/newCredential")
@@ -51,11 +55,23 @@ public class CredentialController {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
+
+    @PostMapping("/login")
+    public ResponseEntity<Optional<User>> login(@RequestBody Credential json) {
+        System.out.println("\n*** CredentialController | login method ***");
+        Integer userId = credentialService.loginToGetUserId(json.getUsername(), json.getPassword());
+
+        //if username and password match, return that user.
+        // if they don't match, return false
+        return new ResponseEntity<>(userService.findById(userId), HttpStatus.OK);
+    }
+
+
     @PostMapping("/checkUsername")
-    public ResponseEntity<Boolean> checkUsername(@RequestBody Credential json){
+    public ResponseEntity<Boolean> checkUsername(@RequestBody Credential json) {
         System.out.println("\n*** CredentialController | findCredential method ***");
 
-        return new ResponseEntity<>(credentialService.checkUsername(json.getUsername()),HttpStatus.OK);
+        return new ResponseEntity<>(credentialService.checkUsername(json.getUsername()), HttpStatus.OK);
 
     }
 
