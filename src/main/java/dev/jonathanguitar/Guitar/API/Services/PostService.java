@@ -5,8 +5,8 @@ import dev.jonathanguitar.Guitar.API.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.nio.file.FileSystemLoopException;
+import java.util.*;
 
 @Service
 public class PostService {
@@ -20,7 +20,28 @@ public class PostService {
 
     // READ   ------------------------------------------------------------------------------------------------
     public List<Post> findAll() {
-        return postRepository.findAll();
+        List<Post> rawPostsList = postRepository.findAll();
+        Map<String, Integer> hashMap = new HashMap<>();
+        List<Integer> idList = new ArrayList<>();
+        List<Post> orderedPostList = new ArrayList<>();
+        for (Post post : rawPostsList) {
+            hashMap.put(post.getPostDate(), post.getPostId());
+        }
+
+        TreeMap<String, Integer> sortedPosts = new TreeMap<>(hashMap);
+
+        for (Map.Entry<String, Integer> post : sortedPosts.entrySet()) {
+            idList.add(post.getValue());
+        }
+
+        Collections.reverse(idList);
+
+        for(Integer id:idList){
+            orderedPostList.add(postRepository.getReferenceById(id));
+        }
+
+
+        return orderedPostList;
     }
 
     public Optional<Post> findByPostId(Integer postId) {
