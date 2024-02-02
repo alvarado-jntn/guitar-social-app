@@ -8,6 +8,7 @@ import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import Posts from './Components/Posts/Posts';
 import Logout from './Components/Logout/Logout';
+import AddNewPost from './Components/Posts/AddNewPost';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/newPost" element={<AddNewPost />} />
         </Route>
       </Routes>
     </BrowserRouter>
