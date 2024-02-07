@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "posts")
 @Data // Automatically creates getters and setters
@@ -25,4 +27,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false, insertable = false, updatable = false)
     private User user;
+
+    @OneToMany(mappedBy = "post")
+    private Set<PostComment> postCommentSet;
 }

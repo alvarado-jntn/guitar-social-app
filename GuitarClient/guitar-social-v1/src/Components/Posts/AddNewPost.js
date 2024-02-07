@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import api from '../../API/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
-function AddNewPost(props) {
+function AddNewPost() {
     const [inputs, setInputs] = useState({
         title: "",
         postDate:"",
@@ -17,7 +17,6 @@ function AddNewPost(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // console.log(Date().getFullYear());
     }, []);
 
     const addNewPostAPI = async () => {
@@ -41,9 +40,7 @@ function AddNewPost(props) {
         const name = e.target.name;
         const value = e.target.value;
 
-        const d = new Date();
-        // console.log("date", d.toDateString());
-        // console.log("date ISO", d.toISOString());
+        const d = new Date();;
         
         setInputs(values => ({ ...values, "postDate": d.toISOString() }));
 

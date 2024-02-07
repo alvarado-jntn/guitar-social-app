@@ -16,7 +16,6 @@ function ViewOnePost() {
     useEffect(() => {
         findByPostId();
         getAllComments();
-        //console.log(post);
     }, []);
 
     const getAllComments = async () => {
@@ -32,7 +31,6 @@ function ViewOnePost() {
     const findByPostId = async () => {
         try {
             const response = await api.get(`/posts/findByPostId/${postId}`);
-            //console.log(response.data);
             setPost(response.data);
             setFirstName(response.data.user.firstName);
             setDate(response.data.postDate);
@@ -45,8 +43,6 @@ function ViewOnePost() {
 
     const newLike = (e) => {
         e.preventDefault();
-        //console.log(`-----`);
-        //console.log(`newLike button clicked`);
         addLikeAPI(e.target.value);
         window.location.reload();
     }
@@ -87,8 +83,8 @@ function ViewOnePost() {
                         <Card style={{ width: '30rem' }}  >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
-                                <Card.Title>{comment.userId} commented:</Card.Title>
-                                <Card.Subtitle>{comment.commentText}</Card.Subtitle>
+                                <Card.Subtitle>{comment.user.firstName} commented:</Card.Subtitle>
+                                <Card.Title>{comment.commentText}</Card.Title>
                                 <Card.Text>Posted on {comment.commentDate.slice(0, 10)} at {comment.commentDate.slice(11, 19)} UTC</Card.Text>
                             </Card.Body>
                         </Card>

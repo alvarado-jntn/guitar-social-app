@@ -16,26 +16,12 @@ function Posts() {
     const getAllPosts = async () => {
         try {
             const response = await api.get(`/posts/all`);
-            // console.log(response.data[0].user.firstName);
-
             setPosts(response.data);
 
         } catch (error) {
             console.log(error);
         }
     };
-
-    const getNameFromIdAPI = async (id) => {
-        try {
-            const response = await api.get(`/users/firstName/${id}`);
-            console.log(response.data);
-            return response.data;
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
 
     const newPost = (e) => {
         e.preventDefault();
@@ -53,12 +39,6 @@ function Posts() {
     const viewComments = (e) => {
         e.preventDefault();
         navigate(`/viewOnePost/${e.target.value}`);
-    }
-
-    const getFirstName = (userId) => {
-
-        return getNameFromIdAPI(userId);
-
     }
 
     return (
