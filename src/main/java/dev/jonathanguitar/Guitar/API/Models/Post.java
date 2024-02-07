@@ -21,4 +21,8 @@ public class Post {
     private String imageLink;
     private Integer likesCount;
     private Integer userId;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false, insertable = false, updatable = false)
+    private User user;
 }

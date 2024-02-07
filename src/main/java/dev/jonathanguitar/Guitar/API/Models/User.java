@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 @Data //This automatically generates getters and setters
@@ -20,5 +22,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Post> postSet;
 
 }
