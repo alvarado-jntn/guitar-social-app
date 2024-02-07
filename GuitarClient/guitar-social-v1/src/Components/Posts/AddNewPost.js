@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function AddNewPost(props) {
     const [inputs, setInputs] = useState({
         title: "",
-        postDate: Date(),
+        postDate:"",
         body: "",
         imageLink: "",
         likesCount: 0,
@@ -17,7 +17,7 @@ function AddNewPost(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-
+        // console.log(Date().getFullYear());
     }, []);
 
     const addNewPostAPI = async () => {
@@ -41,6 +41,12 @@ function AddNewPost(props) {
         const name = e.target.name;
         const value = e.target.value;
 
+        const d = new Date();
+        // console.log("date", d.toDateString());
+        // console.log("date ISO", d.toISOString());
+        
+        setInputs(values => ({ ...values, "postDate": d.toISOString() }));
+
         if (name === "title") {
             if (value.trim() === "") {
                 setTitleCheck(false);
@@ -62,6 +68,8 @@ function AddNewPost(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+
         console.log(inputs);
         if (titleCheck && bodyCheck) {
             addNewPostAPI();
