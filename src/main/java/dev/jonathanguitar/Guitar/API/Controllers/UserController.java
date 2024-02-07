@@ -55,6 +55,11 @@ public class UserController {
         return  new ResponseEntity<>(userService.getAllEmails(), HttpStatus.OK);
     }
 
+    @GetMapping("/firstName/{userId}")
+    public ResponseEntity<String> getNameFromId(@PathVariable("userId") Integer userId){
+        return new ResponseEntity<>(userService.getNameFromId(userId),HttpStatus.OK);
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     @PostMapping("/checkEmail")
     public ResponseEntity<Boolean> checkEmail (@RequestBody User json){

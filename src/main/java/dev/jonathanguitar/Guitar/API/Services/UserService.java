@@ -45,6 +45,12 @@ public class UserService {
         return emailList;
     }
 
+    public String getNameFromId(Integer userId){
+        User user = userRepository.getReferenceById(userId);
+
+        return user.getFirstName();
+    }
+
 
 
     // UPDATE ------------------------------------------------------------------------------------------------
