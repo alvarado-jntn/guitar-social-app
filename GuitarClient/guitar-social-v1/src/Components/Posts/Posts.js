@@ -50,7 +50,7 @@ function Posts() {
             {posts.map(post => {
                 return (
                     <ul key={post.postId}>
-                        <Card style={{ width: '30rem' }}   >
+                        <Card style={{ width: '80%' }}   >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
                                 <Card.Title>{post.title}</Card.Title>

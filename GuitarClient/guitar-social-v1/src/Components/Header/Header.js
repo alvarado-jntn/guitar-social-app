@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useState, useEffect} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -8,6 +8,14 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 
 function Header() {
+    // const [loggedIn, setLoggedIn] = useState(false);
+
+    // useEffect(()=>{
+
+    // },[loggedIn])
+
+
+
     const myStyle = {
         color: "",
     };
@@ -25,7 +33,7 @@ function Header() {
                         {localStorage.getItem("loggedIn") ? <Nav.Link href="/findFriends" >Find Friends</Nav.Link> : <></>}
                         {localStorage.getItem("loggedIn") ?
                             <NavDropdown title="Profile" id="basic-nav-dropdown" >
-                                <NavDropdown.Item href="/myProfile" >My Profile</NavDropdown.Item>
+                                <NavDropdown.Item href={`/myProfile/${localStorage.getItem("userId")}`} >My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/myPosts" >My Posts</NavDropdown.Item>
                                 <NavDropdown.Item href="/myFriends" >My Friends</NavDropdown.Item>
                             </NavDropdown>
