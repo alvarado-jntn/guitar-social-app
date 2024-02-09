@@ -60,6 +60,11 @@ public class UserController {
         return new ResponseEntity<>(userService.getNameFromId(userId),HttpStatus.OK);
     }
 
+    @GetMapping("/find/singleUser/{userId}")
+    public ResponseEntity<Optional<User>> getSingleUser(@PathVariable("userId") Integer userId){
+        return new ResponseEntity<>(userService.findById(userId), HttpStatus.OK);
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     @PostMapping("/checkEmail")
     public ResponseEntity<Boolean> checkEmail (@RequestBody User json){
