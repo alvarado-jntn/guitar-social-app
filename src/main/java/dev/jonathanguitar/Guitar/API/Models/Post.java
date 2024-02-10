@@ -28,6 +28,4 @@ public class Post {
     @JoinColumn(name = "userId", nullable = false, insertable = false, updatable = false)
     private User user;
 
-    @OneToMany(mappedBy = "post")
-    private Set<PostComment> postCommentSet;
 }
