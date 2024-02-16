@@ -48,10 +48,16 @@ public class CredentialController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<Credential> findByUsername(@PathVariable String username) {
+    public ResponseEntity<Credential> findByUsername(@PathVariable("username") String username) {
         System.out.println("\n*** CredentialController called | method : findCredential ***");
 
         return new ResponseEntity<Credential>(credentialService.findByUsername(username), HttpStatus.OK);
+    }
+
+    @GetMapping("/getDetails/username/{userId}")
+    public ResponseEntity<String> findUsername (@PathVariable("userId") Integer userId){
+        System.out.println("\n*** CredentialController | findUsername method ***");
+        return new ResponseEntity<>(credentialService.giveUsername(userId), HttpStatus.OK);
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
