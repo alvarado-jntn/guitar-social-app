@@ -20,20 +20,21 @@ public class CredentialService {
     }
 
     // READ   ------------------------------------------------------------------------------------------------
-    public Integer loginToGetUserId(String username, String password){
+    public Integer loginToGetUserId(String username, String password) {
         Integer userId = 0;
 
         List<Credential> credentialList = credentialRepository.findAll();
 
-        for(Credential credential: credentialList){
-            if(credential.getUsername().equals(username) && credential.getPassword().equals(password)){
-                userId=credential.getUserId();
+        for (Credential credential : credentialList) {
+            if (credential.getUsername().equals(username) && credential.getPassword().equals(password)) {
+                userId = credential.getUserId();
             }
         }
         System.out.println("----userId:" + userId);
 
         return userId;
     }
+
     public Credential findByUsername(String username) {
         return credentialRepository.findByUsername(username);
     }
@@ -78,11 +79,11 @@ public class CredentialService {
         return unique;
     }
 
-    public Credential updateUsername(Integer id, String newUsername) {
+    public String updateUsername(Integer id, String newUsername) {
         Credential credential = credentialRepository.getReferenceById(id);
         credential.setUsername(newUsername);
-
-        return credentialRepository.save(credential);
+        Credential newCredential = credentialRepository.save(credential);
+        return newCredential.getUsername();
     }
 
     public Credential updatePassword(Integer id, String newPassword) {

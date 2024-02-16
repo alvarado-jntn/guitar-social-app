@@ -55,7 +55,7 @@ public class CredentialController {
     }
 
     @GetMapping("/getDetails/username/{userId}")
-    public ResponseEntity<String> findUsername (@PathVariable("userId") Integer userId){
+    public ResponseEntity<String> findUsername(@PathVariable("userId") Integer userId) {
         System.out.println("\n*** CredentialController | findUsername method ***");
         return new ResponseEntity<>(credentialService.giveUsername(userId), HttpStatus.OK);
     }
@@ -81,12 +81,12 @@ public class CredentialController {
 
     }
 
-    @PutMapping("/updateUsername/{id}")
-    public ResponseEntity<Credential> updateUsername(@RequestBody Credential json, @PathVariable("id") Integer id) {
-        System.out.println("\n*** CredentialController called | method : updateUsername ***");
-
+    @PutMapping("/updateUsername")
+    public ResponseEntity<String> updateUsername(@RequestBody Credential json) {
+        System.out.println("\n*** CredentialController | updateUsername method ***");
+        Integer id = json.getUserId();
         String newUsername = json.getUsername();
-        return new ResponseEntity<Credential>(credentialService.updateUsername(id, newUsername), HttpStatus.OK);
+        return new ResponseEntity<>(credentialService.updateUsername(id, newUsername), HttpStatus.OK);
 
     }
 
