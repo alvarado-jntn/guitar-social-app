@@ -90,12 +90,14 @@ public class CredentialController {
 
     }
 
-    @PutMapping("/updatePassword/{id}")
-    public ResponseEntity<Credential> updatePassword(@RequestBody Credential json, @PathVariable("id") Integer id) {
-        System.out.println("\n*** CredentialController called | method : updatePassword ***");
-
+    @PutMapping("/updatePassword")
+    public ResponseEntity<?> updatePassword(@RequestBody Credential json) {
+        System.out.println("\n*** CredentialController | updatePassword method ***");
+        Integer id = json.getUserId();
         String newPassword = json.getPassword();
-        return new ResponseEntity<Credential>(credentialService.updatePassword(id, newPassword), HttpStatus.OK);
+        credentialService.updatePassword(id, newPassword);
+
+        return new ResponseEntity<>("Password updated for this user.", HttpStatus.OK);
     }
 
     // DELETE ------------------------------------------------------------------------------------------------

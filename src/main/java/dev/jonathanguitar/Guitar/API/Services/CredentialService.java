@@ -86,11 +86,10 @@ public class CredentialService {
         return newCredential.getUsername();
     }
 
-    public Credential updatePassword(Integer id, String newPassword) {
+    public void updatePassword(Integer id, String newPassword) {
         Credential credential = credentialRepository.getReferenceById(id);
         credential.setPassword(newPassword);
-
-        return credentialRepository.save(credential);
+        credentialRepository.save(credential);
     }
     // DELETE ------------------------------------------------------------------------------------------------
 
