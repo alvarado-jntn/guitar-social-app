@@ -83,7 +83,7 @@ function ViewOnePost() {
                         <Card style={{ width: '30rem' }}  >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
-                                <Card.Subtitle>{comment.user.firstName} commented:</Card.Subtitle>
+                                {/* <Card.Subtitle>{comment.user.firstName} commented:</Card.Subtitle> */}
                                 <Card.Title>{comment.commentText}</Card.Title>
                                 <Card.Text>Posted on {comment.commentDate.slice(0, 10)} at {comment.commentDate.slice(11, 19)} UTC</Card.Text>
                             </Card.Body>

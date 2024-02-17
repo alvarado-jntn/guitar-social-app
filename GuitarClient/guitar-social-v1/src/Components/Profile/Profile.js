@@ -3,6 +3,7 @@ import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import UserDetails from './UserDetails';
 import AccountInfo from './AccountInfo';
+import LoginInfo from './LoginInfo';
 
 
 function Profile() {
@@ -31,6 +32,8 @@ function Profile() {
             <UserDetails userId={userId} showEditButton={true} />
             <br />
             <AccountInfo userId={userId} />
+            <br />
+            <LoginInfo userId={userId} />
         </div>
     )
 }

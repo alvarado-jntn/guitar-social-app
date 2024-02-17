@@ -3,7 +3,6 @@ import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { nameValidation, emailValidation } from '../Validation/Validations';
 
-
 function AccountInfo(props) {
     const userId = props.userId;
     const [inputs, setInputs] = useState({
@@ -28,9 +27,9 @@ function AccountInfo(props) {
         getAccountDetails();
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         checkEmailAPI(inputs.email);
-    },[foo])
+    }, [inputs])
 
     const getAccountDetails = async () => {
         try {
@@ -112,9 +111,9 @@ function AccountInfo(props) {
         e.preventDefault();
         if (fNameCheck && lNameCheck && emailCheck && apiEmailBool) {
             updateUserAPI();
+            setApiEmailBool(true);
             window.location.reload();
         }
-
     }
 
     return (
@@ -154,13 +153,14 @@ function AccountInfo(props) {
                                     <br />
                                     <Button type='submit' variant='primary' >Submit Info</Button>
                                 </form>
+                                {fNameCheck ? <></> : <p style={{ color: 'red' }}>*First name must begin with capital letter. It cannot be blank</p>}
+                                {lNameCheck ? <></> : <p style={{ color: 'red' }}>*Last name must begin with capital letter. It cannot be blank</p>}
+                                {emailCheck ? <></> : <p style={{ color: 'red' }}>*Please double check if email is in correct format. It cannot be blank</p>}
+                                {apiEmailBool ? <></> : <p style={{ color: 'red' }}>*It looks like this email is already in use.</p>}
                             </ListGroupItem>
                         </ListGroup>
                         : <></>}
-                    {fNameCheck ? <></> : <p style={{ color: 'red' }}>*First name must begin with capital letter. It cannot be blank</p>}
-                    {lNameCheck ? <></> : <p style={{ color: 'red' }}>*Last name must begin with capital letter. It cannot be blank</p>}
-                    {emailCheck ? <></> : <p style={{ color: 'red' }}>*Please double check if email is in correct format. It cannot be blank</p>}
-                    {apiEmailBool ? <></> : <p style={{ color: 'red' }}>*It looks like this email is already in use.</p>}
+
                 </Card.Body>
 
             </Card>
