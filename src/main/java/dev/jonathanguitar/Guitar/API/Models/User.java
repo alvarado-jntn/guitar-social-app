@@ -26,4 +26,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Post> postSet;
 
+    @OneToMany(mappedBy = "user")
+    private Set<PostComment> postCommentSet;
+
 }

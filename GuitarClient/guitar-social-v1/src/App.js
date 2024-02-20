@@ -11,6 +11,8 @@ import Logout from './Components/Logout/Logout';
 import AddNewPost from './Components/Posts/AddNewPost';
 import ViewOnePost from './Components/Posts/ViewOnePost';
 import Profile from './Components/Profile/Profile';
+import MyPosts from './Components/Posts/MyPosts';
+import EditPost from './Components/Posts/EditPost';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/newPost" element={<AddNewPost />} />
           <Route path="/viewOnePost/:postId" element={<ViewOnePost />} />
           <Route path='/myProfile/:userId' element={<Profile />} />
+          <Route path='/myPosts/:userId' element={<MyPosts />} />
+          <Route path='/editPost/:postId' element={<EditPost />} />
         </Route>
       </Routes>
     </BrowserRouter>

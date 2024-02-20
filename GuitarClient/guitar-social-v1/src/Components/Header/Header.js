@@ -34,7 +34,7 @@ function Header() {
                         {localStorage.getItem("loggedIn") ?
                             <NavDropdown title="Profile" id="basic-nav-dropdown" >
                                 <NavDropdown.Item href={`/myProfile/${localStorage.getItem("userId")}`} >My Profile</NavDropdown.Item>
-                                <NavDropdown.Item href="/myPosts" >My Posts</NavDropdown.Item>
+                                <NavDropdown.Item href={`/myPosts/${localStorage.getItem("userId")}`} >My Posts</NavDropdown.Item>
                                 <NavDropdown.Item href="/myFriends" >My Friends</NavDropdown.Item>
                             </NavDropdown>
                             : <></>}

@@ -19,6 +19,9 @@ public class PostComment {
     private String commentText;
     private String commentDate;
 
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false, insertable = false, updatable = false)
+    private User user;
 
 
 }
