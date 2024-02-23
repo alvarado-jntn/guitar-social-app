@@ -66,6 +66,7 @@ function MakeComment(props) {
                     Comment* &nbsp; <textarea required cols={50} rows={4} name='commentText' value={comment.commentText} onChange={handleChange}
                         placeholder='Make a comment here.'
                     />
+                    <br />
                     <Button type='submit'  >Submit Comment</Button>
                 </label> <br />
 

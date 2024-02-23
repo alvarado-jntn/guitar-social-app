@@ -21,7 +21,6 @@ function ViewOnePost() {
     const getAllComments = async () => {
         try {
             const response = await api.get(`/comments/getComments/${postId}`);
-            console.log(response.data);
             setAllComments(response.data);
 
         } catch (error) {

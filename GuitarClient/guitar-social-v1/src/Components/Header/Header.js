@@ -8,19 +8,10 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 
 function Header() {
-    // const [loggedIn, setLoggedIn] = useState(false);
-
-    // useEffect(()=>{
-
-    // },[loggedIn])
-
-
-
+    
     const myStyle = {
         color: "",
     };
-
-
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary"  >

@@ -54,6 +54,10 @@ function EditPost(props) {
         }
     }
 
+    const myPosts =(e)=>{
+        navigate(`/myPosts/${localStorage.getItem("userId")}`);
+    }
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -102,12 +106,14 @@ function EditPost(props) {
                         placeholder='What is this post about?'
                     />
                 </label> <br />
-                <Button type='submit' variant='primary' >Submit</Button>
+                <Button type='submit' variant='primary' >Submit Changes</Button>
                 {titleCheck ? <></> : <p>* Please include a title.</p>}
                 {bodyCheck ? <></> : <p>* Body cannot be empty.</p>}
 
 
             </form>
+            <br/>
+            <Button onClick={myPosts} variant='danger'>Cancel</Button>
         </div>
     )
 }
