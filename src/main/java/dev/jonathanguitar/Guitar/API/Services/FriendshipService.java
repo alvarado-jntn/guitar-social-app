@@ -137,6 +137,26 @@ public class FriendshipService {
         return friendList;
     }
 
+    public List<User> requestsToAccept(Integer receiverId){
+        List<Friendship> entireList = friendshipRepository.findByReceiverId(receiverId);
+        List<User> requestList = new ArrayList<>();
+
+        for(Friendship record: entireList){
+            if(record.getConfirmed().equals(0)){
+                Integer id = record.getSenderId();
+                User friend = userService.findByUserId(id);
+                User makeFriend = new User();
+
+                makeFriend.setUserId(id);
+                makeFriend.setFirstName(friend.getFirstName());
+
+                requestList.add(makeFriend);
+            }
+        }
+
+        return requestList;
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
 
     public Friendship confirmFriendRequest(Integer senderId, Integer receiverId) {

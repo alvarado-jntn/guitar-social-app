@@ -38,6 +38,14 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.findMyFriends(myId), HttpStatus.OK);
     }
 
+    @GetMapping("/myRequests/{myId}")
+    public ResponseEntity<List<User>> myRequests(@PathVariable("myId") Integer myId){
+        System.out.println("\n*** FriendshipController | myRequests method ***");
+
+        return new ResponseEntity<>(friendshipService.requestsToAccept(myId),HttpStatus.OK);
+
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     @PutMapping("/confirm")
     public ResponseEntity<Friendship> confirmFriendship(@RequestBody Friendship json){
