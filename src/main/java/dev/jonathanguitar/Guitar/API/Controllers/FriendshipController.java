@@ -46,6 +46,13 @@ public class FriendshipController {
 
     }
 
+    @GetMapping("/pendingRequests/{myId}")
+    public ResponseEntity<List<User>> pendingRequests(@PathVariable("myId") Integer myId){
+        System.out.println("\n*** FriendshipController | pendingRequests method ***");
+
+        return new ResponseEntity<>(friendshipService.pendingRequests(myId), HttpStatus.OK);
+    }
+
     // UPDATE ------------------------------------------------------------------------------------------------
     @PutMapping("/confirm")
     public ResponseEntity<Friendship> confirmFriendship(@RequestBody Friendship json){
