@@ -1,6 +1,7 @@
 package dev.jonathanguitar.Guitar.API.Controllers;
 
 import dev.jonathanguitar.Guitar.API.Models.Friendship;
+import dev.jonathanguitar.Guitar.API.Models.User;
 import dev.jonathanguitar.Guitar.API.Services.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,6 @@ public class FriendshipController {
     @PostMapping("/addNew")
     public ResponseEntity<?> addNewFriendship(@RequestBody Friendship friendship) {
         System.out.println("\n*** FriendshipController | addNewFriendship method ***");
-        friendship.setConfirmed(false);
         Friendship newFriendship = friendshipService.addNewFriendship(friendship);
 
         if (newFriendship == null) {
@@ -33,7 +33,7 @@ public class FriendshipController {
 
     // READ   ------------------------------------------------------------------------------------------------
     @GetMapping("/findMyFriends/{myId}")
-    public ResponseEntity<List<String>> findMyFriends(@PathVariable("myId") Integer myId) {
+    public ResponseEntity<List<User>> findMyFriends(@PathVariable("myId") Integer myId) {
         System.out.println("\n*** FriendshipController | findMyFriends method ***");
         return new ResponseEntity<>(friendshipService.findMyFriends(myId), HttpStatus.OK);
     }

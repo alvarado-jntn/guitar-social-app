@@ -1,6 +1,7 @@
 package dev.jonathanguitar.Guitar.API.Services;
 
 import dev.jonathanguitar.Guitar.API.Models.Friendship;
+import dev.jonathanguitar.Guitar.API.Models.User;
 import dev.jonathanguitar.Guitar.API.Repositories.FriendshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class FriendshipService {
     private FriendshipRepository friendshipRepository;
     @Autowired
     private CredentialService credentialService;
+
+    @Autowired
+    private UserService userService;
 
     // CREATE ------------------------------------------------------------------------------------------------
 
@@ -87,7 +91,7 @@ public class FriendshipService {
         return friendshipRepository.findById(friendshipId);
     }
 
-    public List<String> findMyFriends(Integer myId) {
+    public List<User> findMyFriends(Integer myId) {
         System.out.println("\n ---- FriendshipService | findMyFriends method ----");
         /**
          * This method accepts user X's id.
@@ -98,45 +102,52 @@ public class FriendshipService {
          * This method will return a list of strings, or rather a list of the usernames that are friends of user X.
          */
 
-        List<Integer> friendIdList = new ArrayList<>();
-        List<String> friendUsernameList = new ArrayList<>();
+        List<User> friendList = new ArrayList<>();
 
         List<Friendship> senderList = friendshipRepository.findBySenderId(myId);
         List<Friendship> receiverList = friendshipRepository.findByReceiverId(myId);
 
         // If I was the sender, then get the receivers only
         for (Friendship record : senderList) {
-            Integer friendId = record.getReceiverId();
-            System.out.println("printing receiver ID from senderList: " + friendId);
-            friendIdList.add(friendId);
+            if (record.getConfirmed() == 1) {
+                Integer friendId = record.getReceiverId();
+                User friend = userService.findByUserId(friendId);
+                User makeFriend= new User();
+
+                makeFriend.setUserId(friendId);
+                makeFriend.setFirstName(friend.getFirstName());
+
+                friendList.add(makeFriend);
+            }
         }
         // If I was the receiver, then get the senders only
         for (Friendship record : receiverList) {
-            Integer friendId = record.getSenderId();
-            System.out.println("printing sender ID from receiverList: " + friendId);
-            friendIdList.add(friendId);
-        }
-        System.out.println("friendIdList: " + friendIdList);
+            if (record.getConfirmed() == 1) {
+                Integer friendId = record.getReceiverId();
+                User friend = userService.findByUserId(friendId);
+                User makeFriend= new User();
 
-        for (Integer id : friendIdList) {
-            String username = credentialService.giveUsername(id);
-            friendUsernameList.add(username);
-        }
-        System.out.println("friendUsernameList: " + friendUsernameList);
+                makeFriend.setUserId(friendId);
+                makeFriend.setFirstName(friend.getFirstName());
 
-        return friendUsernameList;
+                friendList.add(makeFriend);
+            }
+        }
+
+        return friendList;
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
 
-    public Friendship confirmFriendRequest (Integer senderId, Integer receiverId){
+    public Friendship confirmFriendRequest(Integer senderId, Integer receiverId) {
         Integer friendshipId = giveFriendshipId(senderId, receiverId);
 
         Friendship updatedFriendship = friendshipRepository.getReferenceById(friendshipId);
-        updatedFriendship.setConfirmed(true);
+        updatedFriendship.setConfirmed(1);
 
         return friendshipRepository.save(updatedFriendship);
     }
+
     // DELETE ------------------------------------------------------------------------------------------------
     public Integer giveFriendshipId(Integer senderId, Integer receiverId) {
         List<Friendship> firstList = friendshipRepository.findBySenderId(senderId);

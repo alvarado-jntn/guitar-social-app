@@ -34,6 +34,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User findByUserId(Integer id){return userRepository.getReferenceById(id);}
+
     public List<String> getAllEmails(){
         List<User> usersList = userRepository.findAll();
         List<String> emailList = new ArrayList<>();
