@@ -16,5 +16,6 @@ public class Friendship {
     private Integer friendshipId;
     private Integer senderId;
     private Integer receiverId;
+    private Boolean confirmed;
 
 }

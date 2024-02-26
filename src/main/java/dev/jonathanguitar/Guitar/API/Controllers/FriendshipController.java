@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,6 +20,7 @@ public class FriendshipController {
     @PostMapping("/addNew")
     public ResponseEntity<?> addNewFriendship(@RequestBody Friendship friendship) {
         System.out.println("\n*** FriendshipController | addNewFriendship method ***");
+        friendship.setConfirmed(false);
         Friendship newFriendship = friendshipService.addNewFriendship(friendship);
 
         if (newFriendship == null) {
@@ -39,6 +39,12 @@ public class FriendshipController {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
+    @PutMapping("/confirm")
+    public ResponseEntity<Friendship> confirmFriendship(@RequestBody Friendship json){
+        System.out.println("\n*** Friendship Controller | confirmFriendship method ***");
+
+        return new ResponseEntity<>(friendshipService.confirmFriendRequest(json.getSenderId(), json.getReceiverId()), HttpStatus.OK);
+    }
     // DELETE ------------------------------------------------------------------------------------------------
     @DeleteMapping("/deleteFriendship")
     public ResponseEntity<?> deleteFriendship(@RequestBody Friendship json) {

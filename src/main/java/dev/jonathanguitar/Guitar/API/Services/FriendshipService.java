@@ -128,6 +128,15 @@ public class FriendshipService {
     }
 
     // UPDATE ------------------------------------------------------------------------------------------------
+
+    public Friendship confirmFriendRequest (Integer senderId, Integer receiverId){
+        Integer friendshipId = giveFriendshipId(senderId, receiverId);
+
+        Friendship updatedFriendship = friendshipRepository.getReferenceById(friendshipId);
+        updatedFriendship.setConfirmed(true);
+
+        return friendshipRepository.save(updatedFriendship);
+    }
     // DELETE ------------------------------------------------------------------------------------------------
     public Integer giveFriendshipId(Integer senderId, Integer receiverId) {
         List<Friendship> firstList = friendshipRepository.findBySenderId(senderId);
