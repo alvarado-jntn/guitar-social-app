@@ -93,14 +93,6 @@ public class FriendshipService {
 
     public List<User> findMyFriends(Integer myId) {
         System.out.println("\n ---- FriendshipService | findMyFriends method ----");
-        /**
-         * This method accepts user X's id.
-         * It takes that id and searches the friendships table to find every record where it is either the
-         * sender id or the receiver id.
-         * It will take the opposite column and store it in a list of Integers.
-         * That list will be iterated over in order to find the corresponding usernames of the friendship.
-         * This method will return a list of strings, or rather a list of the usernames that are friends of user X.
-         */
 
         List<User> friendList = new ArrayList<>();
 
@@ -123,7 +115,7 @@ public class FriendshipService {
         // If I was the receiver, then get the senders only
         for (Friendship record : receiverList) {
             if (record.getConfirmed() == 1) {
-                Integer friendId = record.getReceiverId();
+                Integer friendId = record.getSenderId();
                 User friend = userService.findByUserId(friendId);
                 User makeFriend= new User();
 
