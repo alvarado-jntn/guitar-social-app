@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -8,7 +8,7 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 
 function Header() {
-    
+
     const myStyle = {
         color: "",
     };
@@ -21,7 +21,13 @@ function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {localStorage.getItem("loggedIn") ? <Nav.Link href="/posts" >Posts</Nav.Link> : <></>}
-                        {localStorage.getItem("loggedIn") ? <Nav.Link href="/findFriends" >Find Friends</Nav.Link> : <></>}
+                        {localStorage.getItem("loggedIn") ?
+                            <NavDropdown title="Friends" id='basic-nav-dropdown'>
+                                <NavDropdown.Item href={`/myFriends`} >My Friends</NavDropdown.Item>
+                                <NavDropdown.Item href={`/findFriends`} >Find Friends</NavDropdown.Item>
+                                <NavDropdown.Item href={`/requests`} >Requests</NavDropdown.Item>
+                            </NavDropdown>
+                            : <></>}
                         {localStorage.getItem("loggedIn") ?
                             <NavDropdown title="Profile" id="basic-nav-dropdown" >
                                 <NavDropdown.Item href={`/myProfile/${localStorage.getItem("userId")}`} >My Profile</NavDropdown.Item>

@@ -13,6 +13,10 @@ import ViewOnePost from './Components/Posts/ViewOnePost';
 import Profile from './Components/Profile/Profile';
 import MyPosts from './Components/Posts/MyPosts';
 import EditPost from './Components/Posts/EditPost';
+import FindFriends from './Components/Friends/FindFriends';
+import OtherProfile from './Components/Profile/OtherProfile';
+import Requests from './Components/Friends/Requests';
+import MyFriends from './Components/Friends/MyFriends';
 
 function App() {
   return (
@@ -31,6 +35,10 @@ function App() {
           <Route path='/myProfile/:userId' element={<Profile />} />
           <Route path='/myPosts/:userId' element={<MyPosts />} />
           <Route path='/editPost/:postId' element={<EditPost />} />
+          <Route path='/findFriends' element={<FindFriends />} />
+          <Route path='/otherProfile/:userId' element={<OtherProfile />} />
+          <Route path='/requests' element={<Requests />} />
+          <Route path='/myFriends' element={<MyFriends />} />
         </Route>
       </Routes>
     </BrowserRouter>

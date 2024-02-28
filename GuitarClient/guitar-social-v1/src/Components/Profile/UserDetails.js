@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 function UserDetails(props) {
@@ -19,6 +20,8 @@ function UserDetails(props) {
     const [editDetails, setEditDetails] = useState(false);
     const userId = props.userId;
     const showEditButton = props.showEditButton;
+    const showProfileButton = props.showProfileButton;
+    const navigate = useNavigate();
 
     useEffect(() => {
         getDetailsAPI();
@@ -56,6 +59,11 @@ function UserDetails(props) {
         }
     }
 
+    const viewProfile = (e) =>{
+        e.preventDefault();
+        navigate(`/otherProfile/${e.target.value}`);
+    }
+
 
     const handleChangeInputs = (e) => {
         const name = e.target.name;
@@ -74,7 +82,7 @@ function UserDetails(props) {
             <Card style={{ width: '70%' }}  >
                 <Card.Img></Card.Img>
                 <Card.Body>
-                    <Card.Title>My Details</Card.Title>
+                    <Card.Title>{props.name}'s Details</Card.Title>
                     <ListGroup>
                         <ListGroupItem>Experience Level: <br />{userDetails.level}</ListGroupItem>
                         <ListGroupItem>Guitar Count: <br />{userDetails.guitarCount}</ListGroupItem>
@@ -82,6 +90,7 @@ function UserDetails(props) {
                         <ListGroupItem>Birthday: <br />{userDetails.dob}</ListGroupItem>
                     </ListGroup>
                     <br />
+                    {showProfileButton? <Button value={userDetails.userId} onClick={viewProfile}>View Profile</Button> : <></>}
                     {showEditButton ? <Button onClick={() => { setEditDetails(!editDetails) }}>Edit</Button> : <></>}
                     <br />
                     <br />

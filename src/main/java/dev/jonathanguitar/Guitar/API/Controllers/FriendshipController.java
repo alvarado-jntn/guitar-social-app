@@ -62,21 +62,18 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.confirmFriendRequest(json.getSenderId(), json.getReceiverId()), HttpStatus.OK);
     }
     // DELETE ------------------------------------------------------------------------------------------------
-    @DeleteMapping("/deleteFriendship")
-    public ResponseEntity<?> deleteFriendship(@RequestBody Friendship json) {
+    @DeleteMapping("/deleteFriendship/{senderId}/{receiverId}")
+    public ResponseEntity<?> deleteFriendship(@PathVariable("senderId") Integer senderId, @PathVariable("receiverId") Integer receiverId) {
         System.out.println("\n*** FriendshipController | deleteFriendship method ***");
-
-        Integer senderId = json.getSenderId();
-        Integer receiverId = json.getReceiverId();
 
         Integer friendshipId = friendshipService.giveFriendshipId(senderId, receiverId);
 
         if (friendshipId == null) {
-            return new ResponseEntity<>("This Friendship does NOT EXIST: " + json, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("This Friendship does NOT EXIST.", HttpStatus.BAD_REQUEST);
         } else {
             friendshipService.deleteFriendship(friendshipId);
-            System.out.println("This Friendship has been DELETED: " + json);
-            return new ResponseEntity<>("This Friendship has been DELETED: " + json, HttpStatus.OK);
+            System.out.println("This Friendship has been DELETED.");
+            return new ResponseEntity<>("This Friendship has been DELETED." , HttpStatus.OK);
         }
     }
 }

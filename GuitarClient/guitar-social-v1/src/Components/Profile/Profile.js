@@ -7,18 +7,6 @@ import LoginInfo from './LoginInfo';
 
 
 function Profile() {
-    const [userDetails, setUserDetails] = useState({
-        dob: "",
-        description: "",
-        guitarCount: 0,
-        level: "Beginner"
-    });
-    const [inputs, setInputs] = useState({
-        dob: "",
-        description: "",
-        guitarCount: 0,
-        level: "Beginner"
-    });
     
     const userId = localStorage.getItem("userId");
 
@@ -29,7 +17,7 @@ function Profile() {
         <div className='background-div'>
             <h1>{localStorage.getItem("firstName")}'s Sound Lounge Profile </h1>
             <br />
-            <UserDetails userId={userId} showEditButton={true} />
+            <UserDetails userId={userId} showEditButton={true} showProfileButton={false} name={localStorage.getItem("firstName")} />
             <br />
             <AccountInfo userId={userId} />
             <br />
