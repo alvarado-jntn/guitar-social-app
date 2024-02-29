@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { passwordValidation, usernameValidation } from '../Validation/Validations';
+import Loading from '../Loading/Loading';
 
 function LoginInfo(props) {
+    const [loading, setLoading] = useState(true);
     const [editUsername, setEditUsername] = useState(false);
     const [editPass, setEditPass] = useState(false);
     const [username, setUsername] = useState("");
@@ -33,6 +35,7 @@ function LoginInfo(props) {
             const response = await api.get(`/cred/getDetails/username/${props.userId}`);
             setUsername(response.data);
             setNameInput(values => ({ ...values, username: response.data }));
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -128,6 +131,7 @@ function LoginInfo(props) {
 
     return (
         <div >
+            <Loading loading={loading}/>
             <Card style={{ width: '70%' }}  >
                 <Card.Img></Card.Img>
                 <Card.Body>

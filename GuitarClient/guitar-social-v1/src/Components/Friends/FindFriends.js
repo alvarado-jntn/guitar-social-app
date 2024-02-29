@@ -4,8 +4,10 @@ import UserDetails from '../Profile/UserDetails';
 
 import { Button, ListGroup, ListGroupItem, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 function FindFriends() {
+    const [loading, setLoading] = useState(true);
     const [allUsers, setAllUsers] = useState([]);
     const navigate = useNavigate();
 
@@ -17,6 +19,7 @@ function FindFriends() {
         try {
             const response = await api.get(`/users/all`);
             setAllUsers(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -32,6 +35,7 @@ function FindFriends() {
             <h1>Find Friends</h1>
             <br />
             <br />
+            <Loading loading={loading}/>
             {allUsers.map(user => {
                 return (
                     <ul key={user.userId}>

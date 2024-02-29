@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-
+import Loading from '../Loading/Loading';
 
 function UserDetails(props) {
+    const [loading, setLoading] = useState(true);
     const [userDetails, setUserDetails] = useState({
         dob: "",
         description: "",
@@ -34,10 +35,11 @@ function UserDetails(props) {
 
             if (response.data === null) {
                 console.log(response.data);
-
+                setLoading(false);
             } else {
                 setUserDetails(response.data);
                 setInputs(response.data);
+                setLoading(false);
             }
         } catch (error) {
             console.log(error);
@@ -79,6 +81,7 @@ function UserDetails(props) {
 
     return (
         <div >
+            <Loading loading={loading}/>
             <Card style={{ width: '70%' }}  >
                 <Card.Img></Card.Img>
                 <Card.Body>

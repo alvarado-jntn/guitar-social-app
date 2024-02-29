@@ -4,11 +4,12 @@ import { Card } from 'react-bootstrap';
 import api from '../../API/axiosConfig';
 import { addLikeAPI } from '../Likes/AddLike';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 
 function MyPosts(props) {
+    const [loading, setLoading] = useState(true);
     const [myPosts, setMyPosts] = useState([]);
-    
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ function MyPosts(props) {
         try {
             const response = await api.get(`/posts/findByUserId/${id}`);
             setMyPosts(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -68,6 +70,7 @@ function MyPosts(props) {
         <div className="background-div" >
             <h1 >MY POSTS </h1>
             <Button onClick={newPost} >Add A New Post</Button>
+            <Loading loading={loading}/>
             <br />
             <br />
             {myPosts.map(post => {

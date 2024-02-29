@@ -3,8 +3,11 @@ import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import api from '../../API/axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 function Requests() {
+    const [sentloading, setSentLoading] = useState(true);
+    const [rloading, setRLoading] = useState(true);
     const [sent, setSent] = useState([]);
     const [received, setReceived] = useState([]);
     const navigate = useNavigate();
@@ -18,6 +21,7 @@ function Requests() {
         try {
             const response = await api.get(`/friends/pendingRequests/${userId}`);
             setSent(response.data);
+            setSentLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -26,6 +30,7 @@ function Requests() {
         try {
             const response = await api.get(`/friends/myRequests/${userId}`);
             setReceived(response.data);
+            setRLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -55,6 +60,8 @@ function Requests() {
         const sender = e.target.value;
         acceptAPI(sender, localStorage.getItem("userId"));
         navigate(`/myFriends`);
+        window.location.reload();
+
     }
 
     const deny = (e) => {
@@ -70,6 +77,7 @@ function Requests() {
         <div className='background-div'>
             <div>
                 <h1>Received Requests</h1>
+                <Loading loading={rloading} />
                 {received.length === 0 ? <p>You don't have any friend requests at this time.</p> : <></>}
                 {received.map(r => {
                     return (
@@ -90,6 +98,7 @@ function Requests() {
 
             <div>
                 <h1>Sent Requests</h1>
+                <Loading loading={sentloading}/>
                 {sent.length === 0 ? <p>You have not sent any requests recently.</p> : <></>}
                 {sent.map(r => {
                     return (

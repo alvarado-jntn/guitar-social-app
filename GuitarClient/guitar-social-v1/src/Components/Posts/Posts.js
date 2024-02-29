@@ -4,8 +4,11 @@ import { Card } from 'react-bootstrap';
 import api from '../../API/axiosConfig';
 import { addLikeAPI } from '../Likes/AddLike';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+import './Posts.css';
 
 function Posts() {
+    const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
@@ -17,7 +20,7 @@ function Posts() {
         try {
             const response = await api.get(`/posts/all`);
             setPosts(response.data);
-
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -43,27 +46,39 @@ function Posts() {
 
     return (
         <div className="background-div" >
-            <h1 >POSTS PAGE</h1>
-            <Button onClick={newPost} >Add A New Post</Button>
+            <h1 className='title' >
+                <span>Sound Lounge</span>
+                <span style={{color:'#DD3704'}}> | </span>
+                <span>All Posts</span>
+                </h1> 
+            <br/>
+            <Button variant='warning' size='lg' onClick={newPost}  >Add A New Post</Button>
+            <Button className='addPost' variant='warning' size='lg' onClick={newPost}  >Add A New Post</Button>
             <br />
             <br />
+            <Loading loading={loading} />
+            {/* {loading ?
+                <Loading /> :
+                <> */}
             {posts.map(post => {
                 return (
                     <ul key={post.postId}>
-                        <Card style={{ width: '80%' }}   >
+                        <Card className='post-card'   >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
                                 <Card.Title>{post.title}</Card.Title>
                                 <Card.Subtitle>{post.body}</Card.Subtitle>
                             </Card.Body>
-                            <ListGroup>
-                                <ListGroupItem>
+                            <ListGroup >
+                                <ListGroupItem style={{background:"#CCCCCC"}}>
                                     <Button
+                                        variant='warning' 
                                         onClick={viewComments}
                                         value={post.postId}
                                     >View Comments</Button> &nbsp;
 
                                     <Button
+                                        variant='warning'
                                         onClick={newLike}
                                         type="submit"
                                         value={post.postId}
@@ -81,6 +96,8 @@ function Posts() {
                     </ul>
                 )
             })}
+            {/* </>
+            } */}
         </div>
     );
 }

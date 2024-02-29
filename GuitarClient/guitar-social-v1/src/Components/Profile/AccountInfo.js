@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { nameValidation, emailValidation } from '../Validation/Validations';
+import Loading from '../Loading/Loading';
 
 function AccountInfo(props) {
+    const [loading, setLoading] = useState(true);
     const userId = props.userId;
     const [inputs, setInputs] = useState({
         firstName: "",
@@ -36,6 +38,7 @@ function AccountInfo(props) {
             const response = await api.get(`/users/find/singleUser/${userId}`);
             setAccountInfo(response.data);
             setInputs(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -118,6 +121,7 @@ function AccountInfo(props) {
 
     return (
         <div >
+            <Loading loading={loading}/>
             <Card style={{ width: '70%' }}  >
                 <Card.Img></Card.Img>
                 <Card.Body>
