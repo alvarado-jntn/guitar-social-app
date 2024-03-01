@@ -95,7 +95,7 @@ function EditPost(props) {
     }
 
     return (
-        <div>
+        <div className='background-div'>
             <form onSubmit={handleSubmit}>
                 <label>
                     Edit Title* &nbsp; <input required type='text' name='title' value={inputs.title} onChange={handleChange} placeholder='Give your post a title' />

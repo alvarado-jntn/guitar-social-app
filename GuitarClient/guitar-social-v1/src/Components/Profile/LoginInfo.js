@@ -132,22 +132,22 @@ function LoginInfo(props) {
     return (
         <div >
             <Loading loading={loading}/>
-            <Card style={{ width: '70%' }}  >
+            <Card className='post-card' >
                 <Card.Img></Card.Img>
                 <Card.Body>
                     <Card.Title>Login Info</Card.Title>
                     <ListGroup>
-                        <ListGroupItem>
+                        <ListGroupItem style={{background:"#CCCCCC"}}>
                             Username:&nbsp;&nbsp;&nbsp;&nbsp;{username}
                             <br />
                             <br />
-                            <Button onClick={() => { setEditUsername(!editUsername) }}>Change Username</Button>
+                            <Button variant='warning' onClick={() => { setEditUsername(!editUsername) }}>Change Username</Button>
                         </ListGroupItem>
 
-                        <ListGroupItem>Password
+                        <ListGroupItem style={{background:"#CCCCCC"}}>Password
                             <br />
                             <br />
-                            <Button onClick={() => { setEditPass(!editPass) }}>Change Password</Button> </ListGroupItem>
+                            <Button variant='warning' onClick={() => { setEditPass(!editPass) }}>Change Password</Button> </ListGroupItem>
                     </ListGroup>
                     <br />
                     <br />

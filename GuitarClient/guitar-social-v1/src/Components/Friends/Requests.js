@@ -67,7 +67,7 @@ function Requests() {
     const deny = (e) => {
         // e.preventDefault();
         const sender = e.target.value;
-        if(window.confirm("Are you sure you wish to delete this friend request?")){
+        if (window.confirm("Are you sure you wish to delete this friend request?")) {
             denyAPI(sender, localStorage.getItem("userId"));
             window.location.reload();
         }
@@ -76,13 +76,16 @@ function Requests() {
     return (
         <div className='background-div'>
             <div>
-                <h1>Received Requests</h1>
+                <h1 className='title'>
+                    <span style={{ color: "#DD3704" }}>| </span>
+                    Received
+                </h1>
                 <Loading loading={rloading} />
                 {received.length === 0 ? <p>You don't have any friend requests at this time.</p> : <></>}
                 {received.map(r => {
                     return (
                         <ul key={r.userId}>
-                            <Card >
+                            <Card className='post-card' >
                                 <Card.Body>
                                     {r.firstName} sent a friend request. <br />
                                     <Button onClick={accept} value={r.userId} variant='primary'>Accept</Button> &nbsp;
@@ -97,13 +100,16 @@ function Requests() {
             <hr />
 
             <div>
-                <h1>Sent Requests</h1>
-                <Loading loading={sentloading}/>
-                {sent.length === 0 ? <p>You have not sent any requests recently.</p> : <></>}
+                <h1 className='title'>
+                    <span style={{ color: "#DD3704" }}>| </span>
+                    Sent
+                </h1>
+                <Loading loading={sentloading} />
+                {sent.length === 0 ? <p>You haven't sent any requests recently.</p> : <></>}
                 {sent.map(r => {
                     return (
                         <ul key={r.userId}>
-                            <Card >
+                            <Card className='post-card' >
                                 <Card.Body>
                                     {r.firstName} <br />
                                     Status: Pending
@@ -113,7 +119,7 @@ function Requests() {
                     )
                 })}
             </div>
-            
+
         </div>
     )
 }

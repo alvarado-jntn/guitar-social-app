@@ -27,11 +27,14 @@ function MyFriends() {
 
     return (
         <div className='background-div'>
-            <h1>My Friends Page</h1>
-            <Loading loading={loading}/>
+            <h1 className='title'>
+                <span style={{ color: '#DD3704' }}> | </span>
+                My Friends Page
+            </h1>
+            <br />
+            <Loading loading={loading} />
             {friends.length === 0 ?
-                <p>It appears you don't have any friends, checkout this page to find new friends:
-                    <a style={{ color: 'red' }} href='/findFriends'>Find Friends</a></p>
+                <p>It appears you don't have any friends, checkout this page to find new friends: <a style={{ color: 'red' }} href='/findFriends'>Find Friends</a></p>
                 : <></>
             }
             {friends.map(f => {

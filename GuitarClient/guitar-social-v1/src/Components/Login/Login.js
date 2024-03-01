@@ -8,7 +8,7 @@ function Login() {
         username: "",
         password: ""
     });
-    
+
     const [usernameCheck, setUsernameCheck] = useState(true);
     const [passCheck, setPassCheck] = useState(true);
     const [loginSuccess, setLoginSuccess] = useState(true);
@@ -28,8 +28,8 @@ function Login() {
             localStorage.setItem("firstName", response.data.firstName);
             localStorage.setItem("lastName", response.data.lastName);
             localStorage.setItem("email", response.data.email);
-            localStorage.setItem("loggedIn",true);
-            
+            localStorage.setItem("loggedIn", true);
+
             navigate("/posts");
             window.location.reload();
 
@@ -71,7 +71,11 @@ function Login() {
 
     return (
         <div className="background-div">
-            <h1>Sound Lounge Login</h1>
+            <h1 className="title">
+                <span style={{ color: '#DD3704' }}> | </span>
+                Sound Lounge Login
+            </h1>
+            <br />
             <form onSubmit={handleSubmit} className="login-form">
                 <label>
                     Username* &nbsp;
@@ -83,7 +87,8 @@ function Login() {
                     <input type="password" name="password" value={inputs.password} onChange={handleChange} />
                 </label>
                 <br />
-                <Button variant="primary" type="submit">Submit</Button>
+                <br />
+                <Button variant="warning" type="submit">Submit</Button>
                 <br />
                 {usernameCheck ? <></> : <p>* Username cannot be blank. It must be at least 4 characters.</p>}
                 {passCheck ? <></> : <p>* Password cannot be blank.</p>}

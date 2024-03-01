@@ -32,9 +32,10 @@ function Home() {
                 <img src={jimiPhoto} alt='Jimi Hendrix.' />
 
             </div>
+            <br/>
             <div className="test-div" id="register">
-                {localStorage.getItem("loggedIn") ? <></> : <p>Already have an account? <a style={{ color: "lime" }} href="/login">Login Here</a> </p>}
-                {localStorage.getItem("loggedIn") ? <></> : <p>Need an account? <a style={{ color: "lime" }} href="/register">Register Here</a></p>}
+                {localStorage.getItem("loggedIn") ? <></> : <p>Already have an account? <a style={{ color: "#ffc107" }} href="/login">Login Here</a> </p>}
+                {localStorage.getItem("loggedIn") ? <></> : <p>Need an account? <a style={{ color: "#ffc107" }} href="/register">Register Here</a></p>}
 
             </div>
 

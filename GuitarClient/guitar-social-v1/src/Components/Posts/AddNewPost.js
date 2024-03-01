@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function AddNewPost() {
     const [inputs, setInputs] = useState({
         title: "",
-        postDate:"",
+        postDate: "",
         body: "",
         imageLink: "",
         likesCount: 0,
@@ -41,7 +41,7 @@ function AddNewPost() {
         const value = e.target.value;
 
         const d = new Date();;
-        
+
         setInputs(values => ({ ...values, "postDate": d.toISOString() }));
 
         if (name === "title") {
@@ -65,7 +65,7 @@ function AddNewPost() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
 
         console.log(inputs);
         if (titleCheck && bodyCheck) {
@@ -80,7 +80,11 @@ function AddNewPost() {
 
     return (
         <div className='background-div'>
-            <h1>New Post</h1>
+            <h1 className='title'>
+                <span style={{ color: '#DD3704' }}> | </span>
+                New Post
+            </h1>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <label>
                     Title* &nbsp; <input required type='text' name='title' value={inputs.title} onChange={handleChange} placeholder='Give your post a title' />
@@ -94,8 +98,8 @@ function AddNewPost() {
 
                 <label>
                     Image &nbsp; <input type='file' name='imageLink' value={inputs.imageLink} onChange={handleChange} />
-                </label> <br />
-                <Button type='submit' variant='primary' >Submit</Button>
+                </label> <br /> <br/>
+                <Button variant='warning' type='submit' >Submit</Button>
                 {titleCheck ? <></> : <p>* Please include a title.</p>}
                 {bodyCheck ? <></> : <p>* Body cannot be empty.</p>}
 

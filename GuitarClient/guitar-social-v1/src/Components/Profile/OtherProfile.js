@@ -47,7 +47,7 @@ function OtherProfile() {
         <div className='background-div'>
             <UserDetails userId={userId} showEditButton={false} showProfileButton={false} name={name} />
             <br />
-            <Button onClick={addFriend} >Add Friend</Button>
+            <Button size='lg' variant='warning' onClick={addFriend} >Add Friend</Button>
             <br />
             <br />
             <OtherPosts userId={userId} name={name} />

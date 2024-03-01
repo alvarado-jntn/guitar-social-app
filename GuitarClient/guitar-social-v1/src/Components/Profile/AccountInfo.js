@@ -121,18 +121,18 @@ function AccountInfo(props) {
 
     return (
         <div >
-            <Loading loading={loading}/>
-            <Card style={{ width: '70%' }}  >
+            <Loading loading={loading} />
+            <Card className='post-card'  >
                 <Card.Img></Card.Img>
                 <Card.Body>
                     <Card.Title>Account Info</Card.Title>
                     <ListGroup>
-                        <ListGroupItem>Name: <br />{accountInfo.firstName}</ListGroupItem>
-                        <ListGroupItem>Last Name: <br />{accountInfo.lastName}</ListGroupItem>
-                        <ListGroupItem>Email: <br />{accountInfo.email}</ListGroupItem>
+                        <ListGroupItem style={{ background: "#CCCCCC" }}>Name: <br />{accountInfo.firstName}</ListGroupItem>
+                        <ListGroupItem style={{ background: "#CCCCCC" }}>Last Name: <br />{accountInfo.lastName}</ListGroupItem>
+                        <ListGroupItem style={{ background: "#CCCCCC" }}>Email: <br />{accountInfo.email}</ListGroupItem>
                     </ListGroup>
                     <br />
-                    <Button onClick={() => { setEditDetails(!editDetails) }}>Edit</Button>
+                    <Button variant='warning' onClick={() => { setEditDetails(!editDetails) }}>Edit</Button>
                     <br />
                     <br />
 

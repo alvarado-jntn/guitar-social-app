@@ -49,19 +49,25 @@ function ViewOnePost() {
 
     return (
         <div className="background-div" >
-            <h1 >One Post Page</h1>
-            <Card style={{ width: '30rem' }} key={post.postId}>
+            <h1 className='title'>
+                <span style={{ color: '#DD3704' }}> | </span>
+                One Post Page
+            </h1>
+            <br/>
+            <Card className='post-card' key={post.postId}>
                 <Card.Img variant='top' />
                 <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Subtitle>{post.body}</Card.Subtitle>
                 </Card.Body>
                 <ListGroup>
-                    <ListGroupItem>
+                    <ListGroupItem style={{background:"#CCCCCC"}}>
                         <Button
+                            variant='warning'
                             onClick={() => { setMakeComment(!makeComment) }}
                         >Add Comment</Button> &nbsp;
                         <Button
+                            variant='warning'
                             onClick={newLike}
                             value={post.postId}
                             type='submit'
@@ -80,7 +86,7 @@ function ViewOnePost() {
             {allComments.map(comment => {
                 return (
                     <ul key={comment.commentId}>
-                        <Card style={{ width: '30rem' }}  >
+                        <Card className='post-card'  >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
                                 <Card.Subtitle>{comment.user.firstName} commented:</Card.Subtitle>
@@ -91,7 +97,7 @@ function ViewOnePost() {
                     </ul>
                 )
             })}
-            {allComments.length === 0? <h3>There are no comments on your post.</h3>:<></>}
+            {allComments.length === 0 ? <h3>There are no comments on your post.</h3> : <></>}
 
         </div>
     )

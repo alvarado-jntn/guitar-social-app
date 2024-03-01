@@ -47,7 +47,6 @@ function Posts() {
     return (
         <div className="background-div" >
             <h1 className='title' >
-                <span>Sound Lounge</span>
                 <span style={{color:'#DD3704'}}> | </span>
                 <span>All Posts</span>
                 </h1> 
@@ -57,9 +56,6 @@ function Posts() {
             <br />
             <br />
             <Loading loading={loading} />
-            {/* {loading ?
-                <Loading /> :
-                <> */}
             {posts.map(post => {
                 return (
                     <ul key={post.postId}>

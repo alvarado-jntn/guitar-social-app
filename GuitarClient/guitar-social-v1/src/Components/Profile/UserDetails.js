@@ -3,6 +3,7 @@ import api from '../../API/axiosConfig';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import '../Posts/Posts.css';
 
 function UserDetails(props) {
     const [loading, setLoading] = useState(true);
@@ -82,19 +83,19 @@ function UserDetails(props) {
     return (
         <div >
             <Loading loading={loading}/>
-            <Card style={{ width: '70%' }}  >
+            <Card className='post-card'  >
                 <Card.Img></Card.Img>
-                <Card.Body>
+                <Card.Body >
                     <Card.Title>{props.name}'s Details</Card.Title>
                     <ListGroup>
-                        <ListGroupItem>Experience Level: <br />{userDetails.level}</ListGroupItem>
-                        <ListGroupItem>Guitar Count: <br />{userDetails.guitarCount}</ListGroupItem>
-                        <ListGroupItem>Bio: <br />{userDetails.description}</ListGroupItem>
-                        <ListGroupItem>Birthday: <br />{userDetails.dob}</ListGroupItem>
+                        <ListGroupItem style={{background:"#CCCCCC"}}>Experience Level: <br />{userDetails.level}</ListGroupItem>
+                        <ListGroupItem style={{background:"#CCCCCC"}}>Guitar Count: <br />{userDetails.guitarCount}</ListGroupItem>
+                        <ListGroupItem style={{background:"#CCCCCC"}}>Bio: <br />{userDetails.description}</ListGroupItem>
+                        <ListGroupItem style={{background:"#CCCCCC"}}>Birthday: <br />{userDetails.dob}</ListGroupItem>
                     </ListGroup>
                     <br />
-                    {showProfileButton? <Button value={userDetails.userId} onClick={viewProfile}>View Profile</Button> : <></>}
-                    {showEditButton ? <Button onClick={() => { setEditDetails(!editDetails) }}>Edit</Button> : <></>}
+                    {showProfileButton? <Button variant='warning' value={userDetails.userId} onClick={viewProfile}>View Profile</Button> : <></>}
+                    {showEditButton ? <Button variant='warning' onClick={() => { setEditDetails(!editDetails) }}>Edit</Button> : <></>}
                     <br />
                     <br />
 

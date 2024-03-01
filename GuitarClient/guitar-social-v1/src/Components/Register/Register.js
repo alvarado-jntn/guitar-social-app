@@ -156,7 +156,17 @@ function Register() {
 
     return (
         <div className="background-div">
-            <h1>Sound Lounge Registration</h1>
+            <h1 className='title'>
+                <span style={{ color: '#DD3704' }}> | </span>
+                Sound Lounge Registration
+            </h1>
+            <br />
+
+
+
+
+
+
             <div>
                 <form onSubmit={handleSubmit} className="register-form">
                     <label>
@@ -185,7 +195,8 @@ function Register() {
                         <input type="password" name="password" value={inputs.password} onChange={handleChange} />
                     </label>
                     <br />
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <br />
+                    <Button variant="warning" type="submit">Submit</Button>
                     <br />
                     {firstName ? <></> : <p style={{ color: "orange" }}>* First Name cannot be empty. It must begin with a capital letter.</p>}
                     {lastName ? <></> : <p style={{ color: "orange" }}>* Last Name cannot be empty. It must begin with a capital letter.</p>}

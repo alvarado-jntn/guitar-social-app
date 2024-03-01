@@ -7,7 +7,7 @@ import LoginInfo from './LoginInfo';
 
 
 function Profile() {
-    
+
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
@@ -15,7 +15,11 @@ function Profile() {
 
     return (
         <div className='background-div'>
-            <h1>{localStorage.getItem("firstName")}'s Sound Lounge Profile </h1>
+            <h1 className='title'>
+                <span style={{ color: '#DD3704' }}> | </span>
+
+                {localStorage.getItem("firstName")}'s Profile
+            </h1>
             <br />
             <UserDetails userId={userId} showEditButton={true} showProfileButton={false} name={localStorage.getItem("firstName")} />
             <br />

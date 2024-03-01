@@ -39,20 +39,22 @@ function OtherPosts(props) {
             {posts.map(post => {
                 return (
                     <ul key={post.postId}>
-                        <Card style={{ width: '80%' }}   >
+                        <Card className='post-card'   >
                             <Card.Img variant="top" src="" />
                             <Card.Body>
                                 <Card.Title>{post.title}</Card.Title>
                                 <Card.Subtitle>{post.body}</Card.Subtitle>
                             </Card.Body>
                             <ListGroup>
-                                <ListGroupItem>
+                                <ListGroupItem style={{background:"#CCCCCC"}}>
                                     <Button
+                                        variant='warning'
                                         onClick={viewComments}
                                         value={post.postId}
                                     >View Comments</Button> &nbsp;
 
                                     <Button
+                                        variant='warning'
                                         onClick={newLike}
                                         type="submit"
                                         value={post.postId}
