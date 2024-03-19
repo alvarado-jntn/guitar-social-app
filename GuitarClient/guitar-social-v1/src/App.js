@@ -17,6 +17,7 @@ import FindFriends from './Components/Friends/FindFriends';
 import OtherProfile from './Components/Profile/OtherProfile';
 import Requests from './Components/Friends/Requests';
 import MyFriends from './Components/Friends/MyFriends';
+import DeleteProfile from './Components/Profile/DeleteProfile';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path='/otherProfile/:userId' element={<OtherProfile />} />
           <Route path='/requests' element={<Requests />} />
           <Route path='/myFriends' element={<MyFriends />} />
+          <Route path='/deleteProfile' element={<DeleteProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

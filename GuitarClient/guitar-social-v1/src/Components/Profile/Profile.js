@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../API/axiosConfig';
-import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import React, {  useEffect } from 'react';
 import UserDetails from './UserDetails';
 import AccountInfo from './AccountInfo';
 import LoginInfo from './LoginInfo';
+import { Button } from 'react-bootstrap';
 
 
 function Profile() {
@@ -26,6 +25,9 @@ function Profile() {
             <AccountInfo userId={userId} />
             <br />
             <LoginInfo userId={userId} />
+            <br />
+            <Button variant='danger' href='/deleteProfile' >Delete Profile</Button>
+
         </div>
     )
 }
